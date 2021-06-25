@@ -39,7 +39,7 @@ class Term {
       });
     }
 
-    const status = await exec("npx size-limit --json", [], {
+    const status = await exec(`${manager} size-limit --json`, [], {
       windowsVerbatimArguments,
       ignoreReturnCode: true,
       listeners: {
