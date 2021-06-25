@@ -10593,7 +10593,8 @@ class Term {
                     cwd: directory
                 });
             }
-            const status = yield exec_1.exec(`${manager} size-limit --json`, [], {
+            const runCommand = manager === "yarn" ? "yarn run -s" : "npx";
+            const status = yield exec_1.exec(`${runCommand} size-limit --json`, [], {
                 windowsVerbatimArguments,
                 ignoreReturnCode: true,
                 listeners: {
