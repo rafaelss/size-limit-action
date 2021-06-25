@@ -39,7 +39,8 @@ class Term {
       });
     }
 
-    const status = await exec(`${manager} size-limit --json`, [], {
+    const runCommand = manager === "yarn" ? "yarn run -s" : "npx";
+    const status = await exec(`${runCommand} size-limit --json`, [], {
       windowsVerbatimArguments,
       ignoreReturnCode: true,
       listeners: {
