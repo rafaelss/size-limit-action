@@ -12,7 +12,8 @@ class Term {
     buildScript?: string,
     cleanScript?: string,
     windowsVerbatimArguments?: boolean,
-    directory?: string
+    directory?: string,
+    script?: string
   ): Promise<{ status: number; output: string }> {
     const manager = hasYarn(directory)
       ? "yarn"
@@ -44,8 +45,7 @@ class Term {
       });
     }
 
-    const runCommand = manager === "yarn" ? "yarn run -s" : "npx";
-    const status = await exec(`${runCommand} size-limit --json`, [], {
+    const status = await exec(script, [], {
       windowsVerbatimArguments,
       ignoreReturnCode: true,
       listeners: {
